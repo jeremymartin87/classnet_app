@@ -43,8 +43,8 @@ class _NavBarState extends State<NavBar> {
             label: 'My Cours',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.school),
-            label: 'School',
+            icon: Icon(Icons.dark_mode),
+            label: 'Dark mode',
           ),
         ],
         currentIndex: _selectedIndex,
