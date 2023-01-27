@@ -14,17 +14,20 @@ class CoursAdapter extends TypeAdapter<Cours> {
     return Cours(
       name: fields[0] as String,
       theme: fields[1] as String,
+      image: fields[2] as String,
     );
   }
 
   @override
   void write(BinaryWriter writer, Cours obj) {
     writer
-      ..writeByte(2)
+      ..writeByte(3)
       ..writeByte(0)
       ..write(obj.name)
       ..writeByte(1)
-      ..write(obj.theme);
+      ..write(obj.theme)
+      ..writeByte(2)
+      ..write(obj.image);
   }
 
   @override

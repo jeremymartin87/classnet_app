@@ -8,12 +8,13 @@ class CustomListItem extends StatelessWidget {
     required this.thumbnail,
     required this.theme,
     required this.name,
+    required this.image,
   });
 
   final Widget thumbnail;
   final String theme;
   final String name;
-
+  final String image;
 
   @override
   Widget build(BuildContext context) {
@@ -31,6 +32,7 @@ class CustomListItem extends StatelessWidget {
             child: CoursDescription(
               theme: theme,
               name: name,
+              image: image,
             ),
           ),
         ],

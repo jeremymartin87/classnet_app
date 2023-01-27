@@ -13,7 +13,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
   Hive.registerAdapter(CoursAdapter());
-  box = await Hive.openBox<Cours>("courbox");
+  box = await Hive.openBox<Cours>("courbox2");
   runApp(MyApp());
 }
 
@@ -24,6 +24,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: _title,

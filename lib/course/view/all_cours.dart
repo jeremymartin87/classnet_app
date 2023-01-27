@@ -15,13 +15,13 @@ class AllCours extends StatefulWidget {
 class _AllCoursState extends State<AllCours> {
   final _name = TextEditingController();
   final _theme = TextEditingController();
-
+  final _image = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
 
       body: ValueListenableBuilder(
-        valueListenable: Hive.box<Cours>('courbox').listenable(),
+        valueListenable: Hive.box<Cours>('courbox2').listenable(),
         builder: (context, Box<Cours> box, _) {
           if (box.values.isEmpty) {
             return const Center(child: Text("No Cours"));
@@ -32,14 +32,20 @@ class _AllCoursState extends State<AllCours> {
               itemExtent: 140,
               itemBuilder: (context, index) {
                 var result = box.getAt(index);
+                var image  = result?.image;
                 return Container(
                   padding: EdgeInsets.all(8.0),
                   child: CustomListItem(
                     name: result!.name,
                     thumbnail: Container(
-                      decoration: const BoxDecoration(color: Colors.blue),
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage('assets/images/$image'),
+                        ),
+                      ),
                     ),
-                      theme: result.theme,
+                    theme: result.theme,
+                    image: result.image,
                   ),
                 );
               },
@@ -59,7 +65,7 @@ class _AllCoursState extends State<AllCours> {
         context: context,
         builder: (context) {
           return AlertDialog(
-            title: const Text("New book"),
+            title: const Text("New Cours"),
             content: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
@@ -77,6 +83,13 @@ class _AllCoursState extends State<AllCours> {
                 const SizedBox(
                   height: 15,
                 ),
+                TextFormField(
+                  controller: _image,
+                  decoration: const InputDecoration(hintText: 'Image'),
+                ),
+                const SizedBox(
+                  height: 15,
+                ),
                 ElevatedButton(
                     onPressed: () async {
                       await box!.put(
@@ -84,6 +97,7 @@ class _AllCoursState extends State<AllCours> {
                           Cours(
                             name: _theme.text,
                             theme: _name.text,
+                            image: _image.text,
                           ));
 
                       Navigator.pop(context);

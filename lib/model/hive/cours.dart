@@ -14,9 +14,13 @@ class Cours{
   @HiveField(1)
   final String theme;
 
+  @HiveField(2)
+  final String image;
+
   const Cours({
     required this.name,
     required this.theme,
+    required this.image,
   });
 
   String toString() {
@@ -25,7 +29,8 @@ class Cours{
 
   factory Cours.fromJson(dynamic map) {
     return Cours(
-        name: map['id'] as String,
-        theme: map['name'] as String);
+        name: map['name'] as String,
+        theme: map['theme'] as String,
+        image: map['image'] as String);
   }
 }

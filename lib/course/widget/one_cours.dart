@@ -5,27 +5,34 @@ class OneCours extends StatelessWidget {
   const OneCours({
     required this.theme,
     required this.name,
+    required this.image,
   });
 
   final String theme;
   final String name;
+  final String image;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('ListTile')),
       body: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 5.0),
+        padding: const EdgeInsets.symmetric(vertical: 10.0),
         child:  Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Expanded(
-              flex: 3,
+              flex: 2,
               child: CustomListItem(
                 name: name,
                 thumbnail: Container(
-                  decoration: const BoxDecoration(color: Colors.red),
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage('assets/images/$image'),
+                    ),
+                  ),
                 ),
                 theme: theme,
+                image: image,
               ),
             ),
           ],

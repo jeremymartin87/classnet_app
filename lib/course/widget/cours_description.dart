@@ -10,10 +10,12 @@ class CoursDescription extends StatelessWidget {
   const CoursDescription({
     required this.theme,
     required this.name,
+    required this.image,
   });
 
   final String theme;
   final String name;
+  final String image;
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +36,7 @@ class CoursDescription extends StatelessWidget {
                             Navigator.push(
                               context,
                               MaterialPageRoute<Widget>(builder: (BuildContext context) {
-                                return OneCours(theme: theme, name: name,);
+                                return OneCours(theme: theme, name: name,image: image);
                               }),
                             );
                           }
