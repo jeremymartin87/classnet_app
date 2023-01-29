@@ -1,7 +1,6 @@
 import 'package:classnet_app/course/widget/custom_list.dart';
 import 'package:flutter/material.dart';
 import 'package:classnet_app/model/hive/cours.dart';
-import 'package:classnet_app/main.dart';
 import 'package:hive_flutter/adapters.dart';
 
 
@@ -13,20 +12,15 @@ class AllCours extends StatefulWidget {
 }
 
 class _AllCoursState extends State<AllCours> {
-  final _name = TextEditingController();
-  final _theme = TextEditingController();
-  final _image = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       body: ValueListenableBuilder(
-        valueListenable: Hive.box<Cours>('courbox2').listenable(),
+        valueListenable: Hive.box<Cours>('courbox4').listenable(),
         builder: (context, Box<Cours> box, _) {
           if (box.values.isEmpty) {
             return const Center(child: Text("No Cours"));
           } else {
-
             return ListView.builder(
               itemCount: box.values.length,
               itemExtent: 140,
@@ -46,6 +40,7 @@ class _AllCoursState extends State<AllCours> {
                     ),
                     theme: result.theme,
                     image: result.image,
+                    text: result.text,
                   ),
                 );
               },
@@ -53,59 +48,6 @@ class _AllCoursState extends State<AllCours> {
           }
         },
       ),
-      floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.add),
-        onPressed: () => addNewBook(context),
-      ),
     );
-  }
-
-  addNewBook(BuildContext context) {
-    showDialog(
-        context: context,
-        builder: (context) {
-          return AlertDialog(
-            title: const Text("New Cours"),
-            content: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                TextFormField(
-                  controller: _name,
-                  decoration: const InputDecoration(hintText: 'Name'),
-                ),
-                const SizedBox(
-                  height: 15,
-                ),
-                TextFormField(
-                  controller: _theme,
-                  decoration: const InputDecoration(hintText: 'Thème'),
-                ),
-                const SizedBox(
-                  height: 15,
-                ),
-                TextFormField(
-                  controller: _image,
-                  decoration: const InputDecoration(hintText: 'Image'),
-                ),
-                const SizedBox(
-                  height: 15,
-                ),
-                ElevatedButton(
-                    onPressed: () async {
-                      await box!.put(
-                          DateTime.now().toString(),
-                          Cours(
-                            name: _theme.text,
-                            theme: _name.text,
-                            image: _image.text,
-                          ));
-
-                      Navigator.pop(context);
-                    },
-                    child: const Text("Add")),
-              ],
-            ),
-          );
-        });
   }
 }

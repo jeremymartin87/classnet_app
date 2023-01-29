@@ -17,10 +17,14 @@ class Cours{
   @HiveField(2)
   final String image;
 
+  @HiveField(3)
+  final String text;
+
   const Cours({
     required this.name,
     required this.theme,
     required this.image,
+    required this.text,
   });
 
   String toString() {
@@ -31,6 +35,7 @@ class Cours{
     return Cours(
         name: map['name'] as String,
         theme: map['theme'] as String,
-        image: map['image'] as String);
+        image: map['image'] as String,
+        text : map['text'] as String);
   }
 }
