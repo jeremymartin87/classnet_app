@@ -25,10 +25,10 @@ class _AllCoursState extends State<AllCours> {
               itemCount: box.values.length,
               itemExtent: 140,
               itemBuilder: (context, index) {
-                var result = box.getAt(index);
-                var image  = result?.image;
+                final result = box.getAt(index);
+                final image  = result?.image;
                 return Container(
-                  padding: EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(8),
                   child: CustomListItem(
                     name: result!.name,
                     thumbnail: Container(

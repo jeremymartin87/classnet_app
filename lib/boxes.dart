@@ -1,7 +1,6 @@
+import 'package:classnet_app/model/hive/cours.dart';
+import 'package:classnet_app/model/hive/my_cours.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-
-import 'model/hive/my_cours.dart';
-import 'model/hive/cours.dart';
 
 class Boxes {
   static Box<Cours> get CoursBox => Hive.box<Cours>("courbox4");
@@ -29,55 +28,55 @@ class Boxes {
     await _DeleteMyCours(MyCoursBox,cours);
   }
   static Map<Box<dynamic>, dynamic Function(dynamic json)> get allBoxes => {
-        CoursBox: (json) => Cours.fromJson(json),
+        CoursBox: Cours.fromJson,
       };
 
   static Future<void> _generateCours(Box<Cours> box) async {
-    String name = 'math';
-    String image = 'math.jpg';
-    String theme = 'chap 1';
-    String text = "Bla bla bla bla bla bla bla bla bla";
-    Cours cours = Cours(
+    var name = 'math';
+    var image = 'math.jpg';
+    var theme = 'chap 1';
+    var text = "Bla bla bla bla bla bla bla bla bla";
+    var cours = Cours(
       name: name,
       theme: theme,
       image: image,
       text: text,
     );
-    String name2 = 'angalais';
-    String image2 = 'anglais.jpg';
-    String theme2 = 'chap 1';
-    String text2 = "cours d'anglais";
-     Cours cours2 = Cours(
+    var name2 = 'angalais';
+    var image2 = 'anglais.jpg';
+    var theme2 = 'chap 1';
+    var text2 = "cours d'anglais";
+    var cours2 = Cours(
       name: name2,
       theme: theme2,
       image: image2,
       text: text2,
     );
-    String name3 = 'communication';
-    String image3 = 'com.jpg';
-    String theme3 = 'chap 1';
-    String text3 = "cours de communication";
-    Cours cours3 = Cours(
+    var name3 = 'communication';
+    var image3 = 'com.jpg';
+    var theme3 = 'chap 1';
+    var text3 = "cours de communication";
+    var cours3 = Cours(
       name: name3,
       theme: theme3,
       image: image3,
       text: text3,
     );
-    String name4 = 'droit';
-    String image4 = 'droit.jpg';
-    String theme4 = 'theme 1';
-    String text4 = "cours de droit";
-    Cours cours4 = Cours(
+    var name4 = 'droit';
+    var image4 = 'droit.jpg';
+    var theme4 = 'theme 1';
+    var text4 = "cours de droit";
+    var cours4 = Cours(
       name: name4,
       theme: theme4,
       image: image4,
       text: text4,
     );
-    String name5 = 'histoire';
-    String image5 = 'histoire.jpg';
-    String theme5 = 'theme 1';
-    String text5 = "cours d' histoire";
-    Cours cours5 = Cours(
+    var name5 = 'histoire';
+    var image5 = 'histoire.jpg';
+    var theme5 = 'theme 1';
+    var text5 = "cours d' histoire";
+    var cours5 = Cours(
       name: name5,
       theme: theme5,
       image: image5,
@@ -93,14 +92,14 @@ class Boxes {
     }
   }
   static Future<void> _AddToMyCours(Box<My_Cours> box,Cours cours) async {
-    final My_cours = My_Cours(
+    final MyCours = My_Cours(
       cours: cours,
     );
 
-    await box.put(DateTime.now().toString(),My_cours);
+    await box.put(DateTime.now().toString(),MyCours);
   }
   static Future<void> _DeleteMyCours(Box<My_Cours> box,Cours cours) async {
-    for(int i = 0;box.length > i ;i++){
+    for(var i = 0;box.length > i ;i++){
       if(box.getAt(i)?.cours.theme == cours.theme &&
           box.getAt(i)?.cours.name == cours.name &&
           box.getAt(i)?.cours.image == cours.image){
@@ -110,7 +109,7 @@ class Boxes {
 
   }
   static bool _GetMyCours(Box<My_Cours> box,Cours cours) {
-    for(int i = 0;box.length > i ;i++){
+    for(var i = 0;box.length > i ;i++){
         if(box.getAt(i)?.cours.theme == cours.theme &&
             box.getAt(i)?.cours.name == cours.name &&
             box.getAt(i)?.cours.image == cours.image){

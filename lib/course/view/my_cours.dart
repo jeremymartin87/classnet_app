@@ -19,7 +19,7 @@ class _MycoursState extends State<Mycours> {
         valueListenable: Hive.box<My_Cours>('courbox6').listenable(),
         builder: (context, Box<My_Cours> box, _) {
           if (box.values.isEmpty) {
-            return const Center(child: Text("Vide"));
+            return const Center(child: Text('Vide'));
           } else {
             return ListView.builder(
               itemCount: box.values.length,
@@ -28,7 +28,7 @@ class _MycoursState extends State<Mycours> {
                 var result = box.getAt(index);
                 var image  = result?.cours.image;
                 return Container(
-                  padding: EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(8),
                   child: MyCustomListItem(
                     name: result!.cours.name,
                     thumbnail: Container(

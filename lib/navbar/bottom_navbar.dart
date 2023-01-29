@@ -1,12 +1,11 @@
 
 import 'package:classnet_app/course/view/all_cours.dart';
+import 'package:classnet_app/course/view/my_cours.dart';
+import 'package:classnet_app/main.dart';
 import 'package:flutter/material.dart';
 
-import '../course/view/my_cours.dart';
-import '../main.dart';
-
 class NavBar extends StatefulWidget {
-  const NavBar({Key? key}) : super(key: key);
+  const NavBar({super.key});
 
   @override
   State<NavBar> createState() => _NavBarState();
@@ -39,17 +38,16 @@ class _NavBarState extends State<NavBar> {
   Widget build(BuildContext context) {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: "",
         themeMode: darkMode ? ThemeMode.dark : ThemeMode.light,
         darkTheme: ThemeData.dark(),
         home:Scaffold(
         bottomNavigationBar: BottomNavigationBar(
         items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
+          const BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: 'Accueil',
           ),
-          BottomNavigationBarItem(
+          const BottomNavigationBarItem(
             icon: Icon(Icons.business),
             label: 'Mes Cours',
           ),
@@ -58,7 +56,7 @@ class _NavBarState extends State<NavBar> {
               value: _isDarkMode,
               onChanged: _onDarkModeChanged,
             ),
-            label: "Mode sombre",
+            label: 'Mode sombre',
           ),
         ],
         currentIndex: _selectedIndex,
@@ -70,7 +68,7 @@ class _NavBarState extends State<NavBar> {
     );
   }
 
-  buildNavigator() {
+  Navigator buildNavigator() {
     return Navigator(
       key: navigatorKeys[_selectedIndex],
       onGenerateRoute: (RouteSettings settings){

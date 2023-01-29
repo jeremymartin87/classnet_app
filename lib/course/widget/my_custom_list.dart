@@ -1,5 +1,5 @@
+import 'package:classnet_app/course/widget/my_cours.dart';
 import 'package:flutter/material.dart';
-import 'my_cours.dart';
 
 
 class MyCustomListItem extends StatelessWidget {
@@ -21,7 +21,7 @@ class MyCustomListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 20.0),
+      padding: const EdgeInsets.symmetric(vertical: 20),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[

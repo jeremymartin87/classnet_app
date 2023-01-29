@@ -1,5 +1,5 @@
+import 'package:classnet_app/course/widget/cours_description.dart';
 import 'package:flutter/material.dart';
-import 'cours_description.dart';
 
 
 class CustomListItem extends StatelessWidget {

@@ -8,7 +8,7 @@ import '../../model/hive/cours.dart';
 
 
 class MyCoursDescription extends StatelessWidget {
-  const MyCoursDescription({
+  const MyCoursDescription({super.key,
     required this.theme,
     required this.name,
     required this.image,
@@ -22,15 +22,15 @@ class MyCoursDescription extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Cours cour = Cours(name: name,theme: theme,image: image,text: "");
+    var cour = Cours(name: name,theme: theme,image: image,text: '');
     return Padding(
-      padding: const EdgeInsets.fromLTRB(5.0, 0.0, 0.0, 0.0),
+      padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Text.rich(
               TextSpan(
-                  style: TextStyle(fontSize: 11,),
+                  style: const TextStyle(fontSize: 11,),
                   children: [
                     TextSpan(
                         text: name,
@@ -38,8 +38,10 @@ class MyCoursDescription extends StatelessWidget {
                           ..onTap = () {
                             Navigator.push(
                               context,
-                              MaterialPageRoute<Widget>(builder: (BuildContext context) {
-                                return OneCours(theme: theme, name: name,image: image,text: text);
+                              MaterialPageRoute<Widget>(builder:
+                                  (BuildContext context) {
+                                return OneCours(theme: theme, name: name,
+                                    image: image,text: text,);
                               }),
                             );
                           }
@@ -47,26 +49,26 @@ class MyCoursDescription extends StatelessWidget {
                   ]
               )
           ),
-          const Padding(padding: EdgeInsets.symmetric(vertical: 0.0)),
           Text(
             theme,
-            style: const TextStyle(fontSize: 10.0),
+            style: const TextStyle(fontSize: 10),
           ),
           Text(
             text,
-            style: const TextStyle(fontSize: 9.0),
+            style: const TextStyle(fontSize: 9),
           ),
-          const Padding(padding: EdgeInsets.symmetric(vertical: 0.0)),
           TextButton(
               style: ButtonStyle(
                 foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
                 overlayColor: MaterialStateProperty.resolveWith<Color?>(
                       (Set<MaterialState> states) {
-                    if (states.contains(MaterialState.hovered))
+                    if (states.contains(MaterialState.hovered)) {
                       return Colors.blue.withOpacity(0.04);
+                    }
                     if (states.contains(MaterialState.focused) ||
-                        states.contains(MaterialState.pressed))
+                        states.contains(MaterialState.pressed)) {
                       return Colors.blue.withOpacity(0.12);
+                    }
                     return null; // Defer to the widget's default.
                   },
                 ),
@@ -75,7 +77,7 @@ class MyCoursDescription extends StatelessWidget {
                   Boxes.DeleteMyCours(cour);
               },
               child:
-              Text("Supprimer")
+              const Text('Supprimer')
           ),
         ],
       ),

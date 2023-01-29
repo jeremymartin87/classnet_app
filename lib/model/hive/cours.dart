@@ -8,6 +8,21 @@ part 'cours.g.dart';
 @HiveType(typeId: 1)
 class Cours{
 
+  const Cours({
+    required this.name,
+    required this.theme,
+    required this.image,
+    required this.text,
+  });
+
+  factory Cours.fromJson(dynamic map) {
+    return Cours(
+        name: map['name'] as String,
+        theme: map['theme'] as String,
+        image: map['image'] as String,
+        text : map['text'] as String);
+  }
+
   @HiveField(0)
   final String name;
 
@@ -20,22 +35,8 @@ class Cours{
   @HiveField(3)
   final String text;
 
-  const Cours({
-    required this.name,
-    required this.theme,
-    required this.image,
-    required this.text,
-  });
-
+  @override
   String toString() {
     return '$name: $theme';
-  }
-
-  factory Cours.fromJson(dynamic map) {
-    return Cours(
-        name: map['name'] as String,
-        theme: map['theme'] as String,
-        image: map['image'] as String,
-        text : map['text'] as String);
   }
 }
