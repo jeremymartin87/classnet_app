@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
-import 'cours_description.dart';
+import 'my_cours.dart';
 
 
-class CustomListItem extends StatelessWidget {
-  const CustomListItem({
+class MyCustomListItem extends StatelessWidget {
+  const MyCustomListItem({
     super.key,
     required this.thumbnail,
     required this.theme,
     required this.name,
     required this.image,
     required this.text,
-
   });
 
   final Widget thumbnail;
@@ -18,7 +17,6 @@ class CustomListItem extends StatelessWidget {
   final String name;
   final String image;
   final String text;
-
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +31,7 @@ class CustomListItem extends StatelessWidget {
           ),
           Expanded(
             flex: 3,
-            child: CoursDescription(
+            child: MyCoursDescription(
               theme: theme,
               name: name,
               image: image,
@@ -41,7 +39,6 @@ class CustomListItem extends StatelessWidget {
             ),
           ),
         ],
-
       ),
     );
 
