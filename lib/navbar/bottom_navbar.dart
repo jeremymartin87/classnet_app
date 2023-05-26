@@ -3,6 +3,8 @@ import 'package:classnet_app/course/view/all_cours.dart';
 import 'package:classnet_app/course/view/my_cours.dart';
 import 'package:classnet_app/main.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 class NavBar extends StatefulWidget {
   const NavBar({super.key});
@@ -40,6 +42,16 @@ class _NavBarState extends State<NavBar> {
         debugShowCheckedModeBanner: false,
         themeMode: darkMode ? ThemeMode.dark : ThemeMode.light,
         darkTheme: ThemeData.dark(),
+        localizationsDelegates: [
+          AppLocalizations.delegate, // Add this line
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        supportedLocales: [
+          Locale('en'), // English
+          Locale('fr'), // Spanish
+        ],
         home:Scaffold(
         bottomNavigationBar: BottomNavigationBar(
         items: <BottomNavigationBarItem>[

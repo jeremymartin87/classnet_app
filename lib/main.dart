@@ -16,7 +16,7 @@ void main() async {
   await Hive.initFlutter();
   await Hive.openBox(darkModeBox);
   Hive..registerAdapter(CoursAdapter())
-  ..registerAdapter(MyCoursAdapter());
+    ..registerAdapter(MyCoursAdapter());
   box = await Hive.openBox<Cours>('courbox4');
   box = await Hive.openBox<My_Cours>('courbox6');
   await Hive.openBox(darkModeBox);
