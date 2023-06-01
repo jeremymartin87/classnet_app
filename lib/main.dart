@@ -6,6 +6,8 @@ import 'package:classnet_app/navbar/bottom_navbar.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
 
 Box? box;
 const darkModeBox = 'darkModeTutorial';
@@ -41,13 +43,11 @@ class MyApp extends StatelessWidget {
           title: _title,
           themeMode: darkMode ? ThemeMode.dark : ThemeMode.light,
           darkTheme: ThemeData.dark(),
-          home: Scaffold(
-            appBar: AppBar(title: const Text(_title)),
-            body: const AllCours(),
-            bottomNavigationBar: const NavBar(),
-          ),
+          home: NavBar(),
         );
       },
     );
   }
 }
+
+

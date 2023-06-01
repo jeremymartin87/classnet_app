@@ -2,7 +2,9 @@
 import 'package:classnet_app/course/view/all_cours.dart';
 import 'package:classnet_app/course/view/my_cours.dart';
 import 'package:classnet_app/main.dart';
+import 'package:classnet_app/translate/translatelist.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
@@ -19,10 +21,12 @@ class _NavBarState extends State<NavBar> {
   Map<int, GlobalKey<NavigatorState>> navigatorKeys = {
     0: GlobalKey<NavigatorState>(),
     1: GlobalKey<NavigatorState>(),
+    2: GlobalKey<NavigatorState>(),
   };
   final List<Widget> _widgetOptions = <Widget>[
     const AllCours(),
     const Mycours(),
+    const DropdownButtonApp(),
   ];
   void _onItemTapped(int index) {
     setState(() {
@@ -38,45 +42,56 @@ class _NavBarState extends State<NavBar> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        themeMode: darkMode ? ThemeMode.dark : ThemeMode.light,
-        darkTheme: ThemeData.dark(),
-        localizationsDelegates: [
-          AppLocalizations.delegate, // Add this line
-          GlobalMaterialLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate,
-          GlobalCupertinoLocalizations.delegate,
-        ],
-        supportedLocales: [
-          Locale('en'), // English
-          Locale('fr'), // Spanish
-        ],
-        home:Scaffold(
-        bottomNavigationBar: BottomNavigationBar(
-        items: <BottomNavigationBarItem>[
-          const BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Accueil',
-          ),
-          const BottomNavigationBarItem(
-            icon: Icon(Icons.business),
-            label: 'Mes Cours',
-          ),
-          BottomNavigationBarItem(
-            icon: Switch(
-              value: _isDarkMode,
-              onChanged: _onDarkModeChanged,
+    return BlocProvider(
+      create: (context) => DropdownBloc(),
+      child: BlocBuilder<DropdownBloc, DropdownState>(builder: (context, lang) {
+        return MaterialApp(
+          locale:  lang.locale,
+          debugShowCheckedModeBanner: false,
+          themeMode: darkMode ? ThemeMode.dark : ThemeMode.light,
+          darkTheme: ThemeData.dark(),
+          title: 'ClassNet',
+          localizationsDelegates: [
+            AppLocalizations.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          supportedLocales: [
+            const Locale('en', ''), // English, no country code
+            const Locale('fr', ''), // French, no country code
+          ],
+          home:Scaffold(
+            bottomNavigationBar: BottomNavigationBar(
+              items: <BottomNavigationBarItem>[
+                const BottomNavigationBarItem(
+                  icon: Icon(Icons.home),
+                  label: 'Accueil',
+                ),
+                const BottomNavigationBarItem(
+                  icon: Icon(Icons.business),
+                  label: 'Mes Cours',
+                ),
+                const BottomNavigationBarItem(
+                  icon: Icon(Icons.settings),
+                  label: 'Paramètre',
+                ),
+                //BottomNavigationBarItem(
+                //icon: Switch(
+                //value: _isDarkMode,
+                //onChanged: _onDarkModeChanged,
+                //),
+                //label: 'Mode sombre',
+                //),
+              ],
+              currentIndex: _selectedIndex,
+              selectedItemColor: Colors.amber[800],
+              onTap: _onItemTapped,
             ),
-            label: 'Mode sombre',
+            body:  buildNavigator(),
           ),
-        ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: Colors.amber[800],
-        onTap: _onItemTapped,
-      ),
-      body:  buildNavigator(),
-    ),
+        );
+      }),
     );
   }
 
@@ -89,4 +104,5 @@ class _NavBarState extends State<NavBar> {
     );
   }
 }
+
 
