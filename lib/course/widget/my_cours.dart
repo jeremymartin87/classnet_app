@@ -1,11 +1,10 @@
+import 'package:classnet_app/boxes.dart';
 import 'package:classnet_app/course/widget/one_cours.dart';
+import 'package:classnet_app/model/hive/cours.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-import '../../boxes.dart';
-import '../../model/hive/cours.dart';
 
 
 class MyCoursDescription extends StatelessWidget {
