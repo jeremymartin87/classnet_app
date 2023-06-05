@@ -6,6 +6,11 @@ import 'package:classnet_app/navbar/bottom_navbar.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:classnet_app/translate/translatelist.dart';
+
 
 Box? box;
 const darkModeBox = 'darkModeTutorial';
@@ -16,7 +21,7 @@ void main() async {
   await Hive.initFlutter();
   await Hive.openBox(darkModeBox);
   Hive..registerAdapter(CoursAdapter())
-  ..registerAdapter(MyCoursAdapter());
+    ..registerAdapter(MyCoursAdapter());
   box = await Hive.openBox<Cours>('courbox4');
   box = await Hive.openBox<My_Cours>('courbox6');
   await Hive.openBox(darkModeBox);
@@ -36,18 +41,32 @@ class MyApp extends StatelessWidget {
     return ValueListenableBuilder(
       valueListenable: Hive.box(darkModeBox).listenable(),
       builder: (context, box, widget) {
-        return MaterialApp(
-          debugShowCheckedModeBanner: false,
-          title: _title,
-          themeMode: darkMode ? ThemeMode.dark : ThemeMode.light,
-          darkTheme: ThemeData.dark(),
-          home: Scaffold(
-            appBar: AppBar(title: const Text(_title)),
-            body: const AllCours(),
-            bottomNavigationBar: const NavBar(),
-          ),
+        return BlocProvider(
+         create: (context) => DropdownBloc(),
+            child: BlocBuilder<DropdownBloc, DropdownState>(builder: (context, lang) {
+            return MaterialApp(
+            locale:  lang.locale,
+            debugShowCheckedModeBanner: false,
+            title: _title,
+            themeMode: darkMode ? ThemeMode.dark : ThemeMode.light,
+            darkTheme: ThemeData.dark(),
+            localizationsDelegates: [
+                AppLocalizations.delegate,
+                GlobalMaterialLocalizations.delegate,
+                GlobalWidgetsLocalizations.delegate,
+                GlobalCupertinoLocalizations.delegate,
+            ],
+            supportedLocales: [
+                const Locale('en', ''), // English, no country code
+                const Locale('fr', ''), // French, no country code
+            ],
+            home: NavBar(),
+            );
+            }),
         );
       },
     );
   }
 }
+
+
