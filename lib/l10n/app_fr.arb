@@ -1,7 +1,10 @@
 {
-    "myCours" : "My cours",
+    "myCours" : "Mes cours",
     "alreadyAdded" : "Déjà ajouté",
     "add" : "Ajouter",
+    "home" : "Accueil",
+    "settings" : "Paramètre",
+     "delete" :  "Supprimer",
     "Français"  : "fr",
     "English" : "en",
 

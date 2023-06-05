@@ -24,7 +24,7 @@ class CoursDescription extends StatelessWidget {
     var cour = Cours(name: name, theme: theme, image: image, text: '');
     var register = AppLocalizations.of(context)?.alreadyAdded ?? '';
     if (!Boxes.GetMyCours(cour)) {
-      register = 'Ajouter';
+      register = AppLocalizations.of(context)?.add ?? '';
     }
     return Padding(
       padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),

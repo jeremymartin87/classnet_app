@@ -1,7 +1,10 @@
 {
-  "myCours" : "My cours",
+  "myCours" : "My courses",
     "alreadyAdded" : "Already added",
-
+    "add" :  "Add",
+    "home" : "Home",
+    "settings" : "Settings",
+    "delete" :  "Delete",
     "helloWorld": "Hello World!",
     "@helloWorld": {
         "description": "The conventional newborn programmer greeting"

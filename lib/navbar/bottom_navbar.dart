@@ -42,57 +42,28 @@ class _NavBarState extends State<NavBar> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => DropdownBloc(),
-      child: BlocBuilder<DropdownBloc, DropdownState>(builder: (context, lang) {
-        return MaterialApp(
-          locale:  lang.locale,
-          debugShowCheckedModeBanner: false,
-          themeMode: darkMode ? ThemeMode.dark : ThemeMode.light,
-          darkTheme: ThemeData.dark(),
-          title: 'ClassNet',
-          localizationsDelegates: [
-            AppLocalizations.delegate,
-            GlobalMaterialLocalizations.delegate,
-            GlobalWidgetsLocalizations.delegate,
-            GlobalCupertinoLocalizations.delegate,
-          ],
-          supportedLocales: [
-            const Locale('en', ''), // English, no country code
-            const Locale('fr', ''), // French, no country code
-          ],
-          home:Scaffold(
+        return Scaffold(
             bottomNavigationBar: BottomNavigationBar(
               items: <BottomNavigationBarItem>[
-                const BottomNavigationBarItem(
-                  icon: Icon(Icons.home),
-                  label: 'Accueil',
+                BottomNavigationBarItem(
+                  icon: const Icon(Icons.home),
+                  label:  AppLocalizations.of(context)?.home ?? '',
                 ),
-                const BottomNavigationBarItem(
+                BottomNavigationBarItem(
                   icon: Icon(Icons.business),
-                  label: 'Mes Cours',
+                  label: AppLocalizations.of(context)?.myCours ?? '',
                 ),
-                const BottomNavigationBarItem(
+                BottomNavigationBarItem(
                   icon: Icon(Icons.settings),
-                  label: 'Paramètre',
+                  label: AppLocalizations.of(context)?.settings ?? '',
                 ),
-                //BottomNavigationBarItem(
-                //icon: Switch(
-                //value: _isDarkMode,
-                //onChanged: _onDarkModeChanged,
-                //),
-                //label: 'Mode sombre',
-                //),
               ],
               currentIndex: _selectedIndex,
               selectedItemColor: Colors.amber[800],
               onTap: _onItemTapped,
             ),
             body:  buildNavigator(),
-          ),
         );
-      }),
-    );
   }
 
   Navigator buildNavigator() {

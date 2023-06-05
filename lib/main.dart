@@ -7,6 +7,9 @@ import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:classnet_app/translate/translatelist.dart';
 
 
 Box? box;
@@ -38,12 +41,28 @@ class MyApp extends StatelessWidget {
     return ValueListenableBuilder(
       valueListenable: Hive.box(darkModeBox).listenable(),
       builder: (context, box, widget) {
-        return MaterialApp(
-          debugShowCheckedModeBanner: false,
-          title: _title,
-          themeMode: darkMode ? ThemeMode.dark : ThemeMode.light,
-          darkTheme: ThemeData.dark(),
-          home: NavBar(),
+        return BlocProvider(
+         create: (context) => DropdownBloc(),
+            child: BlocBuilder<DropdownBloc, DropdownState>(builder: (context, lang) {
+            return MaterialApp(
+            locale:  lang.locale,
+            debugShowCheckedModeBanner: false,
+            title: _title,
+            themeMode: darkMode ? ThemeMode.dark : ThemeMode.light,
+            darkTheme: ThemeData.dark(),
+            localizationsDelegates: [
+                AppLocalizations.delegate,
+                GlobalMaterialLocalizations.delegate,
+                GlobalWidgetsLocalizations.delegate,
+                GlobalCupertinoLocalizations.delegate,
+            ],
+            supportedLocales: [
+                const Locale('en', ''), // English, no country code
+                const Locale('fr', ''), // French, no country code
+            ],
+            home: NavBar(),
+            );
+            }),
         );
       },
     );

@@ -2,6 +2,7 @@ import 'package:classnet_app/course/widget/one_cours.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../boxes.dart';
 import '../../model/hive/cours.dart';
@@ -76,8 +77,7 @@ class MyCoursDescription extends StatelessWidget {
               onPressed: () {
                   Boxes.DeleteMyCours(cour);
               },
-              child:
-              const Text('Supprimer')
+              child: Text(AppLocalizations.of(context)?.delete ?? '')
           ),
         ],
       ),
