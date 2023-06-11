@@ -2,6 +2,7 @@ import 'package:classnet_app/course/widget/custom_list.dart';
 import 'package:flutter/material.dart';
 import 'package:classnet_app/model/hive/cours.dart';
 import 'package:hive_flutter/adapters.dart';
+import 'package:classnet_app/model/hive/hive_config.dart';
 
 
 class AllCours extends StatefulWidget {
@@ -16,7 +17,7 @@ class _AllCoursState extends State<AllCours> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: ValueListenableBuilder(
-        valueListenable: Hive.box<Cours>('courbox4').listenable(),
+        valueListenable: Hive.box<Cours>(HiveConfig.getHiveBoxes()).listenable(),
         builder: (context, Box<Cours> box, _) {
           if (box.values.isEmpty) {
             return const Center(child: Text("No Cours"));
