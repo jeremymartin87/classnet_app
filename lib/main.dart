@@ -14,8 +14,9 @@ import 'package:hive_flutter/adapters.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:classnet_app/model/hive/hive_config.dart';
 
-Box? box;
+
 const darkModeBox = 'darkModeTutorial';
 bool darkMode = false;
 
@@ -30,9 +31,13 @@ void main() async {
   await Hive.openBox(darkModeBox);
   Hive..registerAdapter(CoursAdapter())
     ..registerAdapter(MyCoursAdapter());
-  box = await Hive.openBox<Cours>('courbox4');
-  box = await Hive.openBox<My_Cours>('courbox6');
-  await Hive.openBox(darkModeBox);
+  var hiveBoxes = HiveConfig.getHiveBoxes();
+
+
+    await Hive.openBox<Cours>(hiveBoxes);
+    await Hive.openBox<My_Cours>('courbox7');
+
+
   await Boxes.initHive();
   } catch (e,s) {
     print('Erreur lors de l initialisation de Hive: $e');
