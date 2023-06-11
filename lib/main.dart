@@ -6,7 +6,8 @@ import 'package:classnet_app/course/view/all_cours.dart';
 import 'package:classnet_app/model/hive/cours.dart';
 import 'package:classnet_app/model/hive/my_cours.dart';
 import 'package:classnet_app/navbar/bottom_navbar.dart';
-import 'package:classnet_app/translate/translatelist.dart';
+import 'package:classnet_app/translate/bloc/translate_bloc.dart';
+import 'package:classnet_app/translate/bloc/translate_state.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -19,6 +20,7 @@ import 'package:classnet_app/model/hive/hive_config.dart';
 
 const darkModeBox = 'darkModeTutorial';
 bool darkMode = false;
+List<Cours> coursList= [];
 
 void main() async {
   FlutterError.onError = (details) {
@@ -34,8 +36,9 @@ void main() async {
   var hiveBoxes = HiveConfig.getHiveBoxes();
 
 
-    await Hive.openBox<Cours>(hiveBoxes);
-    await Hive.openBox<My_Cours>('courbox7');
+
+   await Hive.openBox<My_Cours>('courbox7');
+
 
 
   await Boxes.initHive();
@@ -68,17 +71,17 @@ class MyApp extends StatelessWidget {
             title: _title,
             themeMode: darkMode ? ThemeMode.dark : ThemeMode.light,
             darkTheme: ThemeData.dark(),
-            localizationsDelegates: [
+            localizationsDelegates: const [
                 AppLocalizations.delegate,
                 GlobalMaterialLocalizations.delegate,
                 GlobalWidgetsLocalizations.delegate,
                 GlobalCupertinoLocalizations.delegate,
             ],
-            supportedLocales: [
-                const Locale('en', ''), // English, no country code
-                const Locale('fr', ''), // French, no country code
+            supportedLocales: const [
+                Locale('en', ''), // English, no country code
+                Locale('fr', ''), // French, no country code
             ],
-            home: NavBar(),
+            home: const NavBar(),
             );
             }),
         );
@@ -86,5 +89,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-

@@ -1,8 +1,8 @@
 import 'package:classnet_app/course/widget/custom_list.dart';
-import 'package:flutter/material.dart';
 import 'package:classnet_app/model/hive/cours.dart';
-import 'package:hive_flutter/adapters.dart';
 import 'package:classnet_app/model/hive/hive_config.dart';
+import 'package:flutter/material.dart';
+import 'package:hive_flutter/adapters.dart';
 
 
 class AllCours extends StatefulWidget {
