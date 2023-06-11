@@ -1,12 +1,8 @@
+import 'package:bloc/bloc.dart';
+import 'package:classnet_app/course/view/cours.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive/hive.dart';
-
-import 'dart:async';
-
-import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
-
-import 'package:classnet_app/course/view/cours.dart';
 
 part 'cours_event.dart';
 part 'cours_state.dart';
