@@ -1,3 +1,6 @@
+
+import 'dart:io';
+
 import 'package:classnet_app/boxes.dart';
 import 'package:classnet_app/course/view/all_cours.dart';
 import 'package:classnet_app/model/hive/cours.dart';
@@ -7,6 +10,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 Box? box;
 const darkModeBox = 'darkModeTutorial';
