@@ -6,7 +6,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 
-import '../course/view/cours.dart';
+import 'package:classnet_app/course/view/cours.dart';
 
 part 'cours_event.dart';
 part 'cours_state.dart';

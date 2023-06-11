@@ -1,4 +1,4 @@
-import 'package:classnet_app/bloc/cours_bloc.dart';
+import 'package:classnet_app/course/bloc/cours_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
