@@ -16,7 +16,7 @@ class _MycoursState extends State<Mycours> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: ValueListenableBuilder(
-        valueListenable: Hive.box<My_Cours>('courbox6').listenable(),
+        valueListenable: Hive.box<My_Cours>('courbox7').listenable(),
         builder: (context, Box<My_Cours> box, _) {
           if (box.values.isEmpty) {
             return const Center(child: Text('Vide'));
