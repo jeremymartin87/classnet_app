@@ -1,7 +1,6 @@
+import 'package:classnet_app/bloc/cours_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../bloc/cours_bloc.dart';
 
 class AllCours extends StatefulWidget {
   const AllCours({Key? key}) : super(key: key);
