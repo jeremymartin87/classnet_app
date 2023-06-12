@@ -1,24 +1,29 @@
 import 'package:classnet_app/model/hive/cours.dart';
 import 'package:classnet_app/model/hive/my_cours.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:classnet_app/model/hive/hive_config.dart';
 
 class Boxes {
-  static Box<Cours> get CoursBox => Hive.box<Cours>("courbox4");
-  static Box<My_Cours> get MyCoursBox => Hive.box<My_Cours>("courbox6");
+
+  static Box<Cours> get CoursBox => Hive.box<Cours>(getCoursBox());
+  static Box<My_Cours> get MyCoursBox => Hive.box<My_Cours>('courbox7');
 
   static Future<void> initHive() async {
     await Hive.initFlutter();
     await openBoxes();
   }
+  static String getCoursBox() {
+    return HiveConfig.getHiveBoxes();
+  }
 
   static Future<void> openBoxes() async {
 
-    await Hive.openBox<Cours>("courbox4");
+    await Hive.openBox<Cours>(getCoursBox());
     await _generateCours(CoursBox);
   }
 
   static Future<void> AddMyCours(Cours cours) async {
-    await Hive.openBox<My_Cours>("courbox6");
+    await Hive.openBox<My_Cours>("courbox7");
     await _AddToMyCours(MyCoursBox,cours);
   }
   static bool GetMyCours(Cours cours)  {
@@ -42,7 +47,8 @@ class Boxes {
       image: image,
       text: text,
     );
-    var name2 = 'angalais';
+
+    var name2 = 'anglais';
     var image2 = 'anglais.jpg';
     var theme2 = 'chap 1';
     var text2 = "cours d'anglais";
@@ -85,8 +91,11 @@ class Boxes {
 
     if (box.values.isEmpty) {
       await box.put(DateTime.now().toString(),cours);
-      await box.put(DateTime.now().toString(),cours2);
-      await box.put(DateTime.now().toString(),cours3);
+      if(getCoursBox() == 'devHiveBoxes'){
+        await box.put(DateTime.now().toString(),cours2);
+        await box.put(DateTime.now().toString(),cours3);
+      }
+
       await box.put(DateTime.now().toString(),cours4);
       await box.put(DateTime.now().toString(),cours5);
     }

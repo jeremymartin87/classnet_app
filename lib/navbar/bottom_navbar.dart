@@ -2,7 +2,7 @@
 import 'package:classnet_app/course/view/all_cours.dart';
 import 'package:classnet_app/course/view/my_cours.dart';
 import 'package:classnet_app/main.dart';
-import 'package:classnet_app/translate/translatelist.dart';
+import 'package:classnet_app/translate/bloc/translate_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -26,7 +26,7 @@ class _NavBarState extends State<NavBar> {
   final List<Widget> _widgetOptions = <Widget>[
     const AllCours(),
     const Mycours(),
-    const DropdownButtonApp(),
+    const TranslateButtonApp(),
   ];
   void _onItemTapped(int index) {
     setState(() {
