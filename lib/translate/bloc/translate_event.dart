@@ -1,9 +1,9 @@
-abstract class DropdownEvent {
+abstract class TranslateEvent {
 
-  DropdownEvent(this.selectedValue);
+  TranslateEvent(this.selectedValue);
   final String selectedValue;
 }
 
-class DropdownChangedRequested extends DropdownEvent {
-  DropdownChangedRequested(super.selectedValue);
+class TranslateChangedRequested extends TranslateEvent {
+  TranslateChangedRequested(super.selectedValue);
 }

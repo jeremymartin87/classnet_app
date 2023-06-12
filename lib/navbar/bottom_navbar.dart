@@ -26,7 +26,7 @@ class _NavBarState extends State<NavBar> {
   final List<Widget> _widgetOptions = <Widget>[
     const AllCours(),
     const Mycours(),
-    const DropdownButtonApp(),
+    const TranslateButtonApp(),
   ];
   void _onItemTapped(int index) {
     setState(() {

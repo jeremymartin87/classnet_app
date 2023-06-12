@@ -3,9 +3,9 @@ import 'package:classnet_app/translate/bloc/translate_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class DropdownBloc extends Bloc<DropdownEvent, DropdownState> {
-  DropdownBloc() : super(DropdownState(list.first, const Locale('en', ''))) {
-    on<DropdownChangedRequested>((event, emit) async {
+class TranslateBloc extends Bloc<TranslateEvent, TranslateState> {
+  TranslateBloc() : super(TranslateState(list.first, const Locale('en', ''))) {
+    on<TranslateChangedRequested>((event, emit) async {
       var language = const Locale('en', '');
       switch (event.selectedValue) {
         case 'English':
@@ -15,32 +15,32 @@ class DropdownBloc extends Bloc<DropdownEvent, DropdownState> {
           language = const Locale('fr', '');
           break;
       }
-      emit(DropdownState(event.selectedValue, language));
+      emit(TranslateState(event.selectedValue, language));
     });
   }
 }
 
-class DropdownButtonApp extends StatelessWidget {
-  const DropdownButtonApp({super.key});
+class TranslateButtonApp extends StatelessWidget {
+  const TranslateButtonApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
       body: Center(
-        child: DropdownButtonExample(),
+        child: TranslateButtons(),
       ),
     );
   }
 }
 
-class DropdownButtonExample extends StatelessWidget {
-  const DropdownButtonExample({super.key});
+class TranslateButtons extends StatelessWidget {
+  const TranslateButtons({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final dropdownBloc = BlocProvider.of<DropdownBloc>(context);
+    final dropdownBloc = BlocProvider.of<TranslateBloc>(context);
 
-    return BlocBuilder<DropdownBloc, DropdownState>(
+    return BlocBuilder<TranslateBloc, TranslateState>(
       builder: (context, state) {
         return DropdownButton<String>(
           value: state.selectedValue,
@@ -52,7 +52,7 @@ class DropdownButtonExample extends StatelessWidget {
           ),
           onChanged: (String? value) {
             if (value != null) {
-              dropdownBloc.add(DropdownChangedRequested(value));
+              dropdownBloc.add(TranslateChangedRequested(value));
             }
           },
           items: list.map<DropdownMenuItem<String>>((String value) {

@@ -65,9 +65,9 @@ class MyApp extends StatelessWidget {
         return MultiProvider(
           providers: [
             Provider<ErrorsBloc>(create: (_) => ErrorsBloc()),
-            Provider<DropdownBloc>(create: (_) => DropdownBloc()),
+            Provider<TranslateBloc>(create: (_) => TranslateBloc()),
           ],
-            child: BlocBuilder<DropdownBloc, DropdownState>(builder: (context, lang) {
+            child: BlocBuilder<TranslateBloc, TranslateState>(builder: (context, lang) {
             return MaterialApp(
             locale:  lang.locale,
             debugShowCheckedModeBanner: false,

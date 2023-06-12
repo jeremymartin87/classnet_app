@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 const List<String> list = ['English', 'Français'];
 
-class DropdownState {
+class TranslateState {
 
-  DropdownState(this.selectedValue, this.locale);
+  TranslateState(this.selectedValue, this.locale);
   final String selectedValue;
   final Locale locale;
 }
